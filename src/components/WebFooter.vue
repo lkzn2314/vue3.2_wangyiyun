@@ -5,7 +5,7 @@
         <!-- rel="noopener noreferrer" 作用堵住 target="_blank"引发的钓鱼攻击 -->
         <a
           v-for="item in footerLinks"
-          :key="item"
+          :key="item.title"
           :href="item.link"
           target="_blank"
           rel="noopener noreferrer"
@@ -51,7 +51,7 @@
     </div>
 
     <ul class="right">
-      <li class="item" v-for="item in footerImages" :key="item">
+      <li class="item" v-for="item in footerImages" :key="item.link">
         <a
           class="link"
           :href="item.link"
@@ -59,7 +59,6 @@
           target="_blank"
         >
         </a>
-        <span class="title">{{ item.title }}</span>
       </li>
     </ul>
   </div>
@@ -114,7 +113,7 @@ import { footerLinks, footerImages } from '@/network/localData'
         display: block;
         width: 50px;
         height: 45px;
-        background-image: url('~@/assets/img/sprite_footer_02.png');
+        background-image: url('../assets/img/sprite_footer_02.png');
         background-size: 110px 450px;
       }
 
@@ -136,7 +135,7 @@ import { footerLinks, footerImages } from '@/network/localData'
         display: block;
         width: 52px;
         height: 10px;
-        background-image: url('~@/assets/img/sprite_footer_01.png');
+        background-image: url('../../assets/img/sprite_footer_01.png');
         background-size: 180px 100px;
       }
 

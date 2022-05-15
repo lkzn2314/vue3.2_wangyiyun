@@ -5,11 +5,18 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ArtistAnchorCover: typeof import('./src/components/ArtistAnchorCover.vue')['default']
+    DiscCover: typeof import('./src/components/DiscCover.vue')['default']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElInput: typeof import('element-plus/es')['ElInput']
+    HeaderLine: typeof import('./src/components/HeaderLine.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    WebFooter: typeof import('./src/components/webFooter/WebFooter.vue')['default']
-    WebHeader: typeof import('./src/components/webHeader/WebHeader.vue')['default']
+    SongsCover: typeof import('./src/components/SongsCover.vue')['default']
+    TopRanking: typeof import('./src/components/TopRanking.vue')['default']
+    WebFooter: typeof import('./src/components/WebFooter.vue')['default']
+    WebHeader: typeof import('./src/components/WebHeader.vue')['default']
   }
 }
 
