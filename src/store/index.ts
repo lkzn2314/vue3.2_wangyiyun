@@ -4,8 +4,16 @@ import {
   getHotRecommends,
   getHomepageNewDiscs,
   getRankings,
+  getToplist,
 } from '@/network/discover'
-import { HotPlaylistCategory, HotRecommends, NewDiscs, Rankings } from './types'
+import {
+  HotPlaylistCategory,
+  HotRecommends,
+  NewDiscs,
+  playList,
+  Rankings,
+  Toplist,
+} from './types'
 
 export const useRecommendStore = defineStore('recommendStore', {
   state: () => ({
@@ -37,7 +45,7 @@ export const useRecommendStore = defineStore('recommendStore', {
 
     getRankingAction(id: number) {
       getRankings(id).then((res: any) => {
-        console.log(res)
+        // console.log(res)
         switch (id) {
           case 3779629:
             this.newRankings = res.playlist
@@ -55,14 +63,39 @@ export const useRecommendStore = defineStore('recommendStore', {
   },
 })
 
-export const musiclistStore = defineStore('musiclistStore', {
+export const useMusiclistStore = defineStore('musiclistStore', {
   state: () => ({
-    toplist: [],
+    toplist: new Array<Toplist>(),
     currentIndex: 0,
-    playlist: {},
+    playlist: new Array<playList>(),
   }),
-  getters: {},
-  actions: {},
+  getters: {
+    getToplistDetail(): Toplist {
+      return this.toplist[this.currentIndex]
+    },
+  },
+  actions: {
+    getToplistAction() {
+      getToplist().then((res: any) => {
+        if (res.code === 200) {
+          this.toplist = res.list
+        }
+      })
+    },
+
+    changeCurrentIndexAction(index: number) {
+      this.currentIndex = index
+    },
+
+    getRankingDetailAction(playlistId: number) {
+      getRankings(playlistId).then((res: any) => {
+        // console.log('ranking', res)
+        if (res.code === 200) {
+          this.playlist = res.playlist?.tracks
+        }
+      })
+    },
+  },
 })
 
 export const usePlaylistStore = defineStore('playlistStore', {

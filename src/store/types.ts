@@ -20,3 +20,22 @@ export interface Rankings {
   coverImgUrl: string
   tracks: any
 }
+
+export interface Toplist {
+  id: number
+  coverImgUrl: string
+  name: string
+  updateFrequency?: string
+  updateTime?: string
+  subscribedCount?: number
+  trackCount?: number
+  playCount?: number
+}
+
+export interface playList {
+  id: number
+  name: string
+  dt: number
+  ar: { name: string }[]
+  al: { picUrl: string }
+}

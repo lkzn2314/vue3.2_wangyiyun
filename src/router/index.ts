@@ -1,8 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const Discover = () => import('@/views/discover/Discover.vue')
-const Recommend = () =>
+const DiscoverRecommend = () =>
   import('@/views/discover/cViews/recommend/Recommend.vue')
+const DiscoverMusiclist = () =>
+  import('@/views/discover/cViews/musiclist/Musiclist.vue')
 
 const routes = [
   {
@@ -19,7 +21,11 @@ const routes = [
       },
       {
         path: 'recommend',
-        component: Recommend,
+        component: DiscoverRecommend,
+      },
+      {
+        path: 'musiclist',
+        component: DiscoverMusiclist,
       },
     ],
   },

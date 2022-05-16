@@ -2,9 +2,9 @@
   <div class="wrapper">
     <div class="header wrap-v1">
       <div class="item" v-for="item in dicoverMenu" :key="item.title">
-        <router-link :to="item.link" active-class="active">{{
-          item.title
-        }}</router-link>
+        <router-link :to="item.link" active-class="active">
+          {{ item.title }}
+        </router-link>
       </div>
     </div>
   </div>
