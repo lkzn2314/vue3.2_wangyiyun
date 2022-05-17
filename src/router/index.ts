@@ -5,6 +5,8 @@ const DiscoverRecommend = () =>
   import('@/views/discover/cViews/recommend/Recommend.vue')
 const DiscoverMusiclist = () =>
   import('@/views/discover/cViews/musiclist/Musiclist.vue')
+const DiscoverPlaylist = () =>
+  import('@/views/discover/cViews/playlist/Playlist.vue')
 
 const routes = [
   {
@@ -26,6 +28,10 @@ const routes = [
       {
         path: 'musiclist',
         component: DiscoverMusiclist,
+      },
+      {
+        path: 'playlist',
+        component: DiscoverPlaylist,
       },
     ],
   },

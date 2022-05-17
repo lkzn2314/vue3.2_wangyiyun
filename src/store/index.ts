@@ -5,12 +5,17 @@ import {
   getHomepageNewDiscs,
   getRankings,
   getToplist,
+  getAllPlaylist,
+  getAllPlaylistCategory,
+  AllPlaylistParams,
 } from '@/network/discover'
 import {
+  AllPlaylist,
+  AllPlaylistCategory,
   HotPlaylistCategory,
   HotRecommends,
   NewDiscs,
-  playList,
+  PlayList,
   Rankings,
   Toplist,
 } from './types'
@@ -67,7 +72,7 @@ export const useMusiclistStore = defineStore('musiclistStore', {
   state: () => ({
     toplist: new Array<Toplist>(),
     currentIndex: 0,
-    playlist: new Array<playList>(),
+    playlist: new Array<PlayList>(),
   }),
   getters: {
     getToplistDetail(): Toplist {
@@ -101,8 +106,8 @@ export const useMusiclistStore = defineStore('musiclistStore', {
 export const usePlaylistStore = defineStore('playlistStore', {
   state: () => ({
     hotPlaylistCategory: new Array<HotPlaylistCategory>(),
-    allPlaylistCategory: [],
-    allPlaylist: [],
+    allPlaylistCategory: new Array<AllPlaylistCategory>(),
+    allPlaylist: new Array<AllPlaylist>(),
     total: 0,
     currentCat: '全部',
   }),
@@ -113,6 +118,37 @@ export const usePlaylistStore = defineStore('playlistStore', {
         if (res.code === 200) {
           // console.log(res)
           this.hotPlaylistCategory = res.tags
+        }
+      })
+    },
+
+    getAllPlaylistAction(params: AllPlaylistParams) {
+      getAllPlaylist(params).then((res: any) => {
+        if (res.code === 200) {
+          this.allPlaylist = res.playlists
+          this.total = res.total
+        }
+      })
+    },
+
+    changeCurrentCatAction(currentCat: string) {
+      this.currentCat = currentCat
+    },
+
+    getAllPlaylistCategoryAction() {
+      getAllPlaylistCategory().then((res: any) => {
+        // console.log('category', res);
+        if (res.code === 200) {
+          const categories = Object.entries(res.categories).map(
+            ([key, value]) => ({
+              name: value,
+              subs: [],
+            })
+          )
+          for (const item of res.sub) {
+            categories[item.category].subs.push(item)
+          }
+          this.allPlaylistCategory = categories
         }
       })
     },

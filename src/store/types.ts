@@ -32,10 +32,24 @@ export interface Toplist {
   playCount?: number
 }
 
-export interface playList {
+export interface PlayList {
   id: number
   name: string
   dt: number
   ar: { name: string }[]
   al: { picUrl: string }
 }
+
+export interface AllPlaylistCategorySubs {
+  name: string
+}
+export interface AllPlaylistCategory {
+  name: string
+  subs: AllPlaylistCategorySubs[]
+}
+
+export interface AllPlaylist
+  extends Pick<
+    HotRecommends,
+    'id' | 'name' | 'picUrl' | 'coverImgUrl' | 'playCount'
+  > {}

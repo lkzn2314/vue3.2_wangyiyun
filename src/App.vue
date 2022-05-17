@@ -1,9 +1,16 @@
 <template>
-  <Main />
+  <Suspense>
+    <template #default>
+      <MainAsync />
+    </template>
+    <template #fallback>
+      <h3>加载中...</h3>
+    </template>
+  </Suspense>
 </template>
 
 <script setup lang="ts">
-import Main from './views/Main.vue'
+const MainAsync = defineAsyncComponent(() => import('./views/Main.vue'))
 </script>
 
 <style lang="less">
