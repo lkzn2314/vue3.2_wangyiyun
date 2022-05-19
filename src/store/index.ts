@@ -12,6 +12,7 @@ import {
 import {
   AllPlaylist,
   AllPlaylistCategory,
+  AllPlaylistCategorySubs,
   HotPlaylistCategory,
   HotRecommends,
   NewDiscs,
@@ -137,12 +138,11 @@ export const usePlaylistStore = defineStore('playlistStore', {
 
     getAllPlaylistCategoryAction() {
       getAllPlaylistCategory().then((res: any) => {
-        // console.log('category', res);
         if (res.code === 200) {
           const categories = Object.entries(res.categories).map(
             ([key, value]) => ({
-              name: value,
-              subs: [],
+              name: value as string,
+              subs: new Array<AllPlaylistCategorySubs>(),
             })
           )
           for (const item of res.sub) {
